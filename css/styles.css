@@ -1,0 +1,51 @@
+			body{
+				margin-top: 100px;
+			}
+			
+			h3{
+				margin:0 auto;
+				width:200px;
+				height:40px;
+			}
+			
+			#slideshow {
+				margin:0 auto;
+				width:200px;
+				height:144px;
+				position:relative;
+			}
+			
+			#slideshow img {
+				position:absolute;
+			}	
+			
+			#largePics {
+				margin:0 auto;
+				width:450px;
+				height:325px;
+				position: relative;	
+			}
+			
+			#largePics img{
+				position:absolute;
+			}
+			
+			#controls {
+				width:200px;
+				margin:10px auto;
+			}	
+			
+			#next
+			{
+				float:right;
+			}	
+			
+			#ducky
+			{
+				position:absolute;
+				left:10px;
+				top:0px;
+				z-index:1;
+			}
+			
+			

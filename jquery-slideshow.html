@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jQuery Slideshow</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<link rel="stylesheet" href="css/styles.css">
+		<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+		<script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+		<script>
+			$(function (){
+				$("#slideshow img").hide();
+				$("#slideshow img:first").show();
+				$("#largePics img").hide();
+				nextCaption();
+				
+				$("#next").click(nextSlide);
+				$("#previous").click(prevSlide);
+				
+				$("#slideshow img").click(nextSlide);
+				$("#slideshow img").hover(showPic,hidePic);
+				
+				//rubber duck photo can be dragged
+				//it's stack order places it in front of the slideshow
+				$("#ducky").draggable();
+			});
+			
+			function showPic()
+			{
+				var largeSlide = ("#"+$(this).attr("class"));
+				$(largeSlide).fadeIn(1500);
+			}
+			
+			function hidePic()
+			{
+				var largeSlide = ("#"+$(this).attr("class"));
+				$(largeSlide).fadeOut(1500);
+			}
+			
+			function nextCaption()
+			{
+				var imageTitle = $("#slideshow img:visible").attr("title");
+				$("h3").html(imageTitle);
+			}
+			
+			function nextSlide()
+			{
+				var currentImage = $("#slideshow img:visible");
+				var nextImage;
+				
+				if(currentImage.next().length>0)
+				{
+					nextImage = currentImage.next();
+				}
+				else
+				{
+					nextImage = $("#slideshow img:first");
+				}
+				currentImage.hide();
+				nextImage.show();
+				
+				nextCaption();
+				
+				return false; 
+			}
+			
+			function prevSlide()
+			{
+				 var currentImage = $("#slideshow img:visible");
+				 var prevImage;
+				 
+				 if(currentImage.prev().length>0)
+				 {
+				 	prevImage = currentImage.prev();
+				 }
+				 else
+				 {
+				 	prevImage = $("#slideshow img:last");
+				 }
+				 
+				 currentImage.hide();
+				 prevImage.show();
+				 
+				 nextCaption();
+				 
+				 return false; 	 
+			}				
+		</script>
+	</head>	
+	<body>
+		<div id="ducky"> 
+			<p><img src="images/rubber-ducky.gif"></p>
+		</div>	
+		
+		<h3></h3>
+		<div id="slideshow">
+		<img class="duck1" src="images/1_thumb.jpg" title="Ducks on parade" alt="">
+		<img class="duck2" src="images/2_thumb.jpg" title="Ducklings side by side" alt="">
+		<img class="duck3" src="images/3_thumb.jpg" title="Teacup ducklings" alt="">
+		<img class="duck4" src="images/4_thumb.jpg" title="Black and yellow babies" alt="">
+	    <img class="duck5" src="images/5_thumb.jpg" title="Mom and babies" alt="">
+		</div>
+		
+		<div id="controls">
+			<a id="previous" href="#">Prev</a>
+			<a id="next" href="#">Next</a>
+		</div>
+		
+		<div id="largePics">
+		<img id="duck1" src="images/1.jpg" alt="">
+		<img id="duck2" src="images/2.jpg" alt="">
+		<img id="duck3" src="images/3.jpg" alt="">
+		<img id="duck4" src="images/4.jpg" alt="">
+		<img id="duck5" src="images/5.jpg" alt="">
+		</div>		
+	</body>
+</html>
